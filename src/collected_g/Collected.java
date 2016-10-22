@@ -5,6 +5,9 @@ import java.util.Set;
 
 public class Collected {
 
+	public static void main(String[] args) {
+		System.out.println("hello world");
+	}
 	// find all possible interpretations
 	public static void findAllInterpretations(char[] text, Set<String> dict) {
 		// s[i,j] = s[i,k] + s[k+1,j] + s[ij]
