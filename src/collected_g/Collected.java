@@ -99,4 +99,7 @@ public class Collected {
 			return null;
 		}
 	}
+	
+	//----------------------------------------------------------------
+	// given an expression string in polish notation, translate it to infix
 }
