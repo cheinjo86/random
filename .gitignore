@@ -2,3 +2,8 @@
 bin
 *~
 bin/*/*.class
+
+
+src/antlr/PolishExpr.tokens
+src/antlr/PolishExprLexer.java
+src/antlr/PolishExprParser.java
