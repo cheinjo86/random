@@ -1,16 +1,22 @@
 package collected_g;
 
+import java.io.Serializable;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
 public class Collected {
 
 	public static void main(String[] args) {
-		testToArray();
+		testToFromArray();
 	}
 	// bin tree serialization 
 	// tree --> array
-	static class Node {
+	static class Node implements Serializable{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		private final int value;
 		private Node left;
 		private Node right;
@@ -87,7 +93,7 @@ public class Collected {
 		inorder(root.right, v);
 	}
 	
-	public static void testToArray() {
+	public static void testToFromArray() {
 		// build a tree
 		final Node root = new Node(0);
 		
@@ -111,6 +117,11 @@ public class Collected {
 		Node[] ar = toArray(root);
 		
 		printLevel(h, ar);
+		
+		System.out.println("resurcting from array: ...");
+		
+		Node newRoot = fromArray(ar);
+		levelOrderTraversal(newRoot);
 		
 	}
 	static void printLevel(int h, Node[] ar) {
@@ -166,6 +177,50 @@ public class Collected {
 		ret[i] = parent;
 		doToArray(parent.left, ret, 2 * i);
 		doToArray(parent.right, ret, 2 * i + 1);
+	}
+	
+	public static Node fromArray(Node[] ret) {
+		Node root = ret[1];
+		if (root == null) return root;
+		final int maxI = (ret.length - 2 ) / 2;
+		
+		Node parent = null;
+		for (int i = 1; i <= maxI; ++i) {
+			parent = ret[i];
+			if (parent != null) {
+				parent.left = ret[2 * i];
+				parent.right = ret[2 * i + 1];
+			}
+		}
+		
+		
+		return root;
+
+		
+	}
+	
+	// -------------------------------------------
+	public static void levelOrderTraversal(Node root) {
+		// just bfs;
+		LinkedList<Node> q = new LinkedList<>();
+		q.add(root);
+		
+		while(!q.isEmpty()) {
+			int size = q.size();
+			while (size > 0) {
+				Node n = q.removeFirst();
+				System.out.print(n + "  ");
+				if (n.left != null) {
+					q.addLast(n.left);
+				}
+				if (n.right != null) {
+					q.addLast(n.right);
+				}
+				--size;
+			}
+			System.out.println();
+		}
+		
 	}
 
 	//----------------------------------------------
