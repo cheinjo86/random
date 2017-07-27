@@ -224,6 +224,38 @@ public class Collected {
 	}
 
 	//----------------------------------------------
+	public static void findPalindrome(char[] str) {
+		boolean isPalin[][] = new boolean[str.length + 1][str.length + 1];
+		int[][] p = new int[str.length + 1][str.length + 1];
+		
+		for (int i = 0; i < str.length; ++i) {
+			isPalin[i][i] = true;
+		}
+		
+		for (int len = 2; len <= str.length; ++len) {
+			// head
+			for (int i = 0; i <= str.length - len; ++i) {
+				//   maxI -1 + len = str.len  
+				// tail
+				int j = i + len - 1;
+				
+				if (len == 2) {
+					isPalin[i][j] = str[i] == str[j];
+				}
+				else {
+					isPalin[i][j] = isPalin[i+1][j-1] && str[i] == str[j];
+				}
+				
+				if (!isPalin[i][j]) {
+					p[i][j] = Integer.MAX_VALUE;
+					for (int k = i; k < j; ++k) {
+						p[i][j] = Math.min(p[i][j], p[i][k] + p[k+1][j] + 1);
+					}
+				}
+			}
+		}
+	}
+	//----------------------------------------------
 	// find all possible interpretations
 	public static void findAllInterpretations(char[] text, Set<String> dict) {
 		// s[i,j] = s[i,k] + s[k+1,j] + s[ij]
@@ -316,6 +348,35 @@ public class Collected {
 		}
 	}
 	
+	static void quicksort(int[] ar, int l, int h) {
+		if (l < h) {
+			int p = partition(ar, l, h);
+			quicksort(ar, l, p);
+			quicksort(ar, p + 1, h);
+		}
+	}
+	
+	static int partition(int[] ar, int l, int h) {
+		final int pValue = ar[l];
+		int i = l - 1;
+		int j = h + 1;
+		
+		while (true) {
+			do {
+				++i;
+			} while (ar[i] < pValue);
+			
+			do {
+				--j;
+			} while (ar[j] > pValue);
+			
+			if (i >= j) return j;
+			
+			int t = ar[i];
+			ar[i] = ar[j];
+			ar[j] = t;
+		}
+	}
 	//----------------------------------------------------------------
 	// given an expression string in polish notation, translate it to infix
 }
