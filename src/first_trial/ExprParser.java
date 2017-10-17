@@ -1,0 +1,487 @@
+// $ANTLR 3.5.2 src/first_trial/Expr.g 2017-09-15 13:23:18
+
+package first_trial;
+import java.util.HashMap;
+
+
+import org.antlr.runtime.*;
+import java.util.Stack;
+import java.util.List;
+import java.util.ArrayList;
+
+@SuppressWarnings("all")
+public class ExprParser extends Parser {
+	public static final String[] tokenNames = new String[] {
+		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "ALPHA", "DIGIT", "DIV", "EQ", 
+		"ID", "INT", "LPAREN", "MINUS", "MULT", "NEWLINE", "PLUS", "RPAREN", "WS"
+	};
+	public static final int EOF=-1;
+	public static final int ALPHA=4;
+	public static final int DIGIT=5;
+	public static final int DIV=6;
+	public static final int EQ=7;
+	public static final int ID=8;
+	public static final int INT=9;
+	public static final int LPAREN=10;
+	public static final int MINUS=11;
+	public static final int MULT=12;
+	public static final int NEWLINE=13;
+	public static final int PLUS=14;
+	public static final int RPAREN=15;
+	public static final int WS=16;
+
+	// delegates
+	public Parser[] getDelegates() {
+		return new Parser[] {};
+	}
+
+	// delegators
+
+
+	public ExprParser(TokenStream input) {
+		this(input, new RecognizerSharedState());
+	}
+	public ExprParser(TokenStream input, RecognizerSharedState state) {
+		super(input, state);
+	}
+
+	@Override public String[] getTokenNames() { return ExprParser.tokenNames; }
+	@Override public String getGrammarFileName() { return "src/first_trial/Expr.g"; }
+
+
+	/** Map variable name to Integer object holding value */
+	HashMap memory = new HashMap();
+
+
+
+	// $ANTLR start "prog"
+	// src/first_trial/Expr.g:15:1: prog : ( evaluate )+ ;
+	public final void prog() throws RecognitionException {
+		double evaluate1 =0.0;
+
+		try {
+			// src/first_trial/Expr.g:15:5: ( ( evaluate )+ )
+			// src/first_trial/Expr.g:15:9: ( evaluate )+
+			{
+			// src/first_trial/Expr.g:15:9: ( evaluate )+
+			int cnt1=0;
+			loop1:
+			while (true) {
+				int alt1=2;
+				int LA1_0 = input.LA(1);
+				if ( ((LA1_0 >= ID && LA1_0 <= LPAREN)) ) {
+					alt1=1;
+				}
+
+				switch (alt1) {
+				case 1 :
+					// src/first_trial/Expr.g:15:10: evaluate
+					{
+					pushFollow(FOLLOW_evaluate_in_prog33);
+					evaluate1=evaluate();
+					state._fsp--;
+
+					System.out.println(evaluate1); 
+					}
+					break;
+
+				default :
+					if ( cnt1 >= 1 ) break loop1;
+					EarlyExitException eee = new EarlyExitException(1, input);
+					throw eee;
+				}
+				cnt1++;
+			}
+
+			}
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "prog"
+
+
+
+	// $ANTLR start "evaluate"
+	// src/first_trial/Expr.g:17:1: evaluate returns [double value] : ( expr | ID '=' expr );
+	public final double evaluate() throws RecognitionException {
+		double value = 0.0;
+
+
+		Token ID3=null;
+		double expr2 =0.0;
+		double expr4 =0.0;
+
+		try {
+			// src/first_trial/Expr.g:18:2: ( expr | ID '=' expr )
+			int alt2=2;
+			int LA2_0 = input.LA(1);
+			if ( ((LA2_0 >= INT && LA2_0 <= LPAREN)) ) {
+				alt2=1;
+			}
+			else if ( (LA2_0==ID) ) {
+				int LA2_2 = input.LA(2);
+				if ( (LA2_2==EQ) ) {
+					alt2=2;
+				}
+				else if ( (LA2_2==EOF||LA2_2==DIV||(LA2_2 >= ID && LA2_2 <= MULT)||LA2_2==PLUS) ) {
+					alt2=1;
+				}
+
+				else {
+					int nvaeMark = input.mark();
+					try {
+						input.consume();
+						NoViableAltException nvae =
+							new NoViableAltException("", 2, 2, input);
+						throw nvae;
+					} finally {
+						input.rewind(nvaeMark);
+					}
+				}
+
+			}
+
+			else {
+				NoViableAltException nvae =
+					new NoViableAltException("", 2, 0, input);
+				throw nvae;
+			}
+
+			switch (alt2) {
+				case 1 :
+					// src/first_trial/Expr.g:19:3: expr
+					{
+					pushFollow(FOLLOW_expr_in_evaluate71);
+					expr2=expr();
+					state._fsp--;
+
+					value =expr2;
+					}
+					break;
+				case 2 :
+					// src/first_trial/Expr.g:20:9: ID '=' expr
+					{
+					ID3=(Token)match(input,ID,FOLLOW_ID_in_evaluate83); 
+					match(input,EQ,FOLLOW_EQ_in_evaluate85); 
+					pushFollow(FOLLOW_expr_in_evaluate87);
+					expr4=expr();
+					state._fsp--;
+
+					memory.put((ID3!=null?ID3.getText():null), new Double(expr4));
+					}
+					break;
+
+			}
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		return value;
+	}
+	// $ANTLR end "evaluate"
+
+
+
+	// $ANTLR start "expr"
+	// src/first_trial/Expr.g:24:1: expr returns [double value] : e= mult_expr ( PLUS e= mult_expr | MINUS e= mult_expr )* ;
+	public final double expr() throws RecognitionException {
+		double value = 0.0;
+
+
+		double e =0.0;
+
+		try {
+			// src/first_trial/Expr.g:25:5: (e= mult_expr ( PLUS e= mult_expr | MINUS e= mult_expr )* )
+			// src/first_trial/Expr.g:26:5: e= mult_expr ( PLUS e= mult_expr | MINUS e= mult_expr )*
+			{
+			pushFollow(FOLLOW_mult_expr_in_expr125);
+			e=mult_expr();
+			state._fsp--;
+
+			value = e;
+			// src/first_trial/Expr.g:27:5: ( PLUS e= mult_expr | MINUS e= mult_expr )*
+			loop3:
+			while (true) {
+				int alt3=3;
+				int LA3_0 = input.LA(1);
+				if ( (LA3_0==PLUS) ) {
+					alt3=1;
+				}
+				else if ( (LA3_0==MINUS) ) {
+					alt3=2;
+				}
+
+				switch (alt3) {
+				case 1 :
+					// src/first_trial/Expr.g:27:9: PLUS e= mult_expr
+					{
+					match(input,PLUS,FOLLOW_PLUS_in_expr137); 
+					pushFollow(FOLLOW_mult_expr_in_expr141);
+					e=mult_expr();
+					state._fsp--;
+
+					value += e;
+					}
+					break;
+				case 2 :
+					// src/first_trial/Expr.g:28:9: MINUS e= mult_expr
+					{
+					match(input,MINUS,FOLLOW_MINUS_in_expr153); 
+					pushFollow(FOLLOW_mult_expr_in_expr157);
+					e=mult_expr();
+					state._fsp--;
+
+					value -= e;
+					}
+					break;
+
+				default :
+					break loop3;
+				}
+			}
+
+			}
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		return value;
+	}
+	// $ANTLR end "expr"
+
+
+
+	// $ANTLR start "mult_expr"
+	// src/first_trial/Expr.g:32:1: mult_expr returns [double value] : left= unary_expr ( MULT right= unary_expr | DIV right= unary_expr )* ;
+	public final double mult_expr() throws RecognitionException {
+		double value = 0.0;
+
+
+		double left =0.0;
+		double right =0.0;
+
+		try {
+			// src/first_trial/Expr.g:33:2: (left= unary_expr ( MULT right= unary_expr | DIV right= unary_expr )* )
+			// src/first_trial/Expr.g:34:2: left= unary_expr ( MULT right= unary_expr | DIV right= unary_expr )*
+			{
+			pushFollow(FOLLOW_unary_expr_in_mult_expr189);
+			left=unary_expr();
+			state._fsp--;
+
+			 value = left; 
+			// src/first_trial/Expr.g:35:2: ( MULT right= unary_expr | DIV right= unary_expr )*
+			loop4:
+			while (true) {
+				int alt4=3;
+				int LA4_0 = input.LA(1);
+				if ( (LA4_0==MULT) ) {
+					alt4=1;
+				}
+				else if ( (LA4_0==DIV) ) {
+					alt4=2;
+				}
+
+				switch (alt4) {
+				case 1 :
+					// src/first_trial/Expr.g:36:3: MULT right= unary_expr
+					{
+					match(input,MULT,FOLLOW_MULT_in_mult_expr198); 
+					pushFollow(FOLLOW_unary_expr_in_mult_expr204);
+					right=unary_expr();
+					state._fsp--;
+
+					 value *= right; 
+					}
+					break;
+				case 2 :
+					// src/first_trial/Expr.g:37:4: DIV right= unary_expr
+					{
+					match(input,DIV,FOLLOW_DIV_in_mult_expr211); 
+					pushFollow(FOLLOW_unary_expr_in_mult_expr217);
+					right=unary_expr();
+					state._fsp--;
+
+					 value /= right; 
+					}
+					break;
+
+				default :
+					break loop4;
+				}
+			}
+
+			}
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		return value;
+	}
+	// $ANTLR end "mult_expr"
+
+
+
+	// $ANTLR start "unary_expr"
+	// src/first_trial/Expr.g:41:1: unary_expr returns [double value] : ( atom ) ;
+	public final double unary_expr() throws RecognitionException {
+		double value = 0.0;
+
+
+		double atom5 =0.0;
+
+		try {
+			// src/first_trial/Expr.g:42:2: ( ( atom ) )
+			// src/first_trial/Expr.g:43:2: ( atom )
+			{
+			// src/first_trial/Expr.g:43:2: ( atom )
+			// src/first_trial/Expr.g:44:3: atom
+			{
+			pushFollow(FOLLOW_atom_in_unary_expr244);
+			atom5=atom();
+			state._fsp--;
+
+			 value = atom5; 
+			}
+
+			}
+
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		return value;
+	}
+	// $ANTLR end "unary_expr"
+
+
+
+	// $ANTLR start "atom"
+	// src/first_trial/Expr.g:49:1: atom returns [double value] : ( INT | ID | LPAREN e= expr RPAREN );
+	public final double atom() throws RecognitionException {
+		double value = 0.0;
+
+
+		Token INT6=null;
+		Token ID7=null;
+		double e =0.0;
+
+		try {
+			// src/first_trial/Expr.g:50:5: ( INT | ID | LPAREN e= expr RPAREN )
+			int alt5=3;
+			switch ( input.LA(1) ) {
+			case INT:
+				{
+				alt5=1;
+				}
+				break;
+			case ID:
+				{
+				alt5=2;
+				}
+				break;
+			case LPAREN:
+				{
+				alt5=3;
+				}
+				break;
+			default:
+				NoViableAltException nvae =
+					new NoViableAltException("", 5, 0, input);
+				throw nvae;
+			}
+			switch (alt5) {
+				case 1 :
+					// src/first_trial/Expr.g:50:9: INT
+					{
+					INT6=(Token)match(input,INT,FOLLOW_INT_in_atom273); 
+					value = Integer.parseInt((INT6!=null?INT6.getText():null));
+					}
+					break;
+				case 2 :
+					// src/first_trial/Expr.g:51:9: ID
+					{
+					ID7=(Token)match(input,ID,FOLLOW_ID_in_atom285); 
+
+					        	Double v = (Double)memory.get((ID7!=null?ID7.getText():null));
+					        	if ( v!=null ) value = v.doubleValue();
+					        	else System.err.println("undefined variable "+(ID7!=null?ID7.getText():null));
+					        
+					}
+					break;
+				case 3 :
+					// src/first_trial/Expr.g:57:9: LPAREN e= expr RPAREN
+					{
+					match(input,LPAREN,FOLLOW_LPAREN_in_atom305); 
+					pushFollow(FOLLOW_expr_in_atom309);
+					e=expr();
+					state._fsp--;
+
+					match(input,RPAREN,FOLLOW_RPAREN_in_atom311); 
+					value = e;
+					}
+					break;
+
+			}
+		}
+		catch (RecognitionException re) {
+			reportError(re);
+			recover(input,re);
+		}
+		finally {
+			// do for sure before leaving
+		}
+		return value;
+	}
+	// $ANTLR end "atom"
+
+	// Delegated rules
+
+
+
+	public static final BitSet FOLLOW_evaluate_in_prog33 = new BitSet(new long[]{0x0000000000000702L});
+	public static final BitSet FOLLOW_expr_in_evaluate71 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_evaluate83 = new BitSet(new long[]{0x0000000000000080L});
+	public static final BitSet FOLLOW_EQ_in_evaluate85 = new BitSet(new long[]{0x0000000000000700L});
+	public static final BitSet FOLLOW_expr_in_evaluate87 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_mult_expr_in_expr125 = new BitSet(new long[]{0x0000000000004802L});
+	public static final BitSet FOLLOW_PLUS_in_expr137 = new BitSet(new long[]{0x0000000000000700L});
+	public static final BitSet FOLLOW_mult_expr_in_expr141 = new BitSet(new long[]{0x0000000000004802L});
+	public static final BitSet FOLLOW_MINUS_in_expr153 = new BitSet(new long[]{0x0000000000000700L});
+	public static final BitSet FOLLOW_mult_expr_in_expr157 = new BitSet(new long[]{0x0000000000004802L});
+	public static final BitSet FOLLOW_unary_expr_in_mult_expr189 = new BitSet(new long[]{0x0000000000001042L});
+	public static final BitSet FOLLOW_MULT_in_mult_expr198 = new BitSet(new long[]{0x0000000000000700L});
+	public static final BitSet FOLLOW_unary_expr_in_mult_expr204 = new BitSet(new long[]{0x0000000000001042L});
+	public static final BitSet FOLLOW_DIV_in_mult_expr211 = new BitSet(new long[]{0x0000000000000700L});
+	public static final BitSet FOLLOW_unary_expr_in_mult_expr217 = new BitSet(new long[]{0x0000000000001042L});
+	public static final BitSet FOLLOW_atom_in_unary_expr244 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_INT_in_atom273 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_atom285 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_LPAREN_in_atom305 = new BitSet(new long[]{0x0000000000000700L});
+	public static final BitSet FOLLOW_expr_in_atom309 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_RPAREN_in_atom311 = new BitSet(new long[]{0x0000000000000002L});
+}

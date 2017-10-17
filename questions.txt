@@ -187,3 +187,8 @@ next line : 12112211121214 and so on..
 how many possible strings of words can be formed using 1 as a, 2 as b, 3 as c and so on.
 for 111 - posible string aaa,ak,ka  
 
+
+
+
+http://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-tree-set-2-using-parent-pointer/
+http://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-search-tree/

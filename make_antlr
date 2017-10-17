@@ -1,1 +1,4 @@
+## to generate the grammar and lexer java files:
 java -cp lib/antlr-3.5.2-complete-no-st3.jar:.  org.antlr.Tool PolishExpr.g
+
+# 

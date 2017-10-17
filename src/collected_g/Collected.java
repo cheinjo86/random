@@ -235,7 +235,7 @@ public class Collected {
 		for (int len = 2; len <= str.length; ++len) {
 			// head
 			for (int i = 0; i <= str.length - len; ++i) {
-				//   maxI -1 + len = str.len  
+				//   maxI -1 + len = str.len  -1
 				// tail
 				int j = i + len - 1;
 				
