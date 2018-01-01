@@ -23,7 +23,53 @@ public class NumbersArray {
 	static final int FALSE = -1;
 	static final int TRUE = 1;
 	static final int UNKNOWN = 0;
+	static void swap(char[] arr,int a, int b) {
+		char ch = arr[a];
+		arr[a] = arr[b];
+		arr[b] = ch;
+	}
+	public static void combination(int [] nums, int k) {
+		combination(nums, 0, 0, k);
+	}
 	
+	static void combination(int[] nums, int start, int k, int maxK) {
+		if (k > maxK) {
+			for (int i = 0; i < maxK; ++i) {
+				System.out.print(nums[i] + ", ");
+			}
+			System.out.println();
+		}
+		else {
+			for (int i = start; i < nums.length; ++i) {
+				nums[k] = i;
+				combination(nums, i + 1, k + 1, maxK);
+			}
+		}
+	}
+	public static void permutation(String st) {
+		count = 0;
+		permutation(st.toCharArray(), 0);
+	}
+	static int count = 0;
+	public static void permutation(char[] chars, int i) {
+		if (i == chars.length) {
+			System.out.print(count++ + " : ");
+			for (char ch : chars) {
+				System.out.print(ch);
+			}
+			System.out.println();
+		}
+		else {
+			for (int j = i; j < chars.length; ++j) {
+				//StringBuilder st = new StringBuilder(prefix);
+				//st.append(chars[i]);
+				swap(chars, i, j);
+				// a b c d 
+				permutation(chars, i + 1);
+				swap(chars, i, j);
+			}
+		}
+	}
 	public static int findOddOcurring(int[] nums) {
 		// xx yy z
 		// xx xy  zz
@@ -57,7 +103,8 @@ public class NumbersArray {
 		for (int i = 1; i < nums.length; ++i) {
 			hash ^= nums[i].hashCode();
 		}
-		
+		// a a b
+		// a b
 		for(T t : map.values()) {
 			hash ^= t.hashCode();
 		}
@@ -76,6 +123,7 @@ public class NumbersArray {
 		}
 		return ret;
 	}
+	
 	public static int findSmallestLargerThan(int[] digits) {
 		// find the right most digit (d) that has a larger digit to its right
 		// swap d with the smallest of the larger
@@ -176,8 +224,7 @@ public class NumbersArray {
 			ret = ret * 10 + digits[j];
 		}
 		return ret;
-		//reverse(digits, i+1, digits.length - 1);
-		// reverse
+
 	}
 	
 	public static void reverse(int[] nums, int low, int high) {
@@ -501,6 +548,58 @@ public class NumbersArray {
 		}
 		
 		System.out.println("not found");
+	}
+	
+	public static void main(String[] args) {
+		int[] arr = {1,  4, -3, -4,  6 , -7 , 8 ,-5};
+		           //1    5  2  -2   4   -3   5   0
+		// k = -4
+		System.out.println(hasConsecSumNonMotonic(arr, -4));
+		
+	}
+	public static boolean hasConsecSumNonMotonic(int[] nums, int target) {
+		// if such a sum exists
+		// there must exist s[i] (sum up till i)
+		// and s[j]
+		// such that diff s[j] - s[i] == k
+		// (suppose i < j)
+		// because it means  there exists a subsequence beweteen [i,j] such that s[i-->j] = k
+		Set<Integer> seen = new HashSet<>();
+		
+		int low = 0;
+		int curSum = 0;
+		
+		while (low < nums.length) {
+			//int d = target - curSum;
+			int d = curSum - target;
+			if (seen.contains(d)) return true;
+			
+			curSum += nums[low];
+			seen.add(curSum);
+			++low;
+		}
+		
+		return false;
+	}
+	public static boolean hasConsecSum(int[] nums, int target) {
+		// serires have postive numbers only 
+		int low = 0;
+		int high = 1;
+		int curSum = nums[low];
+		
+		while (high < nums.length) {
+			if (curSum == target) return true;
+			else if (curSum < target) {
+				curSum += nums[high];
+				++high;
+			}
+			else {
+				curSum -= nums[low];
+				++low;
+			}
+		}
+		
+		return false;
 	}
 	public static class Interval {
 		int start;
@@ -1523,15 +1622,15 @@ public class NumbersArray {
 //		}
 //	}
 	
-	public static void main(String[] args) {
-		
-		spell(1);
-		spell(0);
-		spell(1_030_341);
-		spell(1_003_012);
-		spell(1123_009_109);
-		
-	}
+//	public static void main(String[] args) {
+//		
+//		spell(1);
+//		spell(0);
+//		spell(1_030_341);
+//		spell(1_003_012);
+//		spell(1123_009_109);
+//		
+//	}
 	static final String[] digits = new String[] {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"};
 	static final String[] tens = new String[] {"", "", "", "thir", "four", "fif", "six", "seven", "eight", "nine"};
 	static final String[] ty = new String[] {"","", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety"};

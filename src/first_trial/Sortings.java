@@ -204,11 +204,11 @@ public class Sortings {
 	
 	public static void sortPartialWithQueue(int[] nums, int k) {
 		PriorityQueue<Integer> heap = new PriorityQueue<>(k+1);
-		for (int i = 0; i <= k; ++i) {
+		for (int i = 0; i < k; ++i) {
 			heap.add(nums[i]);
 		}
 		
-		for (int i = k + 1, j = 0; j < nums.length; ++j) {
+		for (int i = k , j = 0; j < nums.length; ++j) {
 			if (i < nums.length) {
 				nums[j] = heap.poll();
 				heap.add(nums[i]);
@@ -222,7 +222,7 @@ public class Sortings {
 	public static void sortPartiallySorted(int[] nums, int k) {
 		// make a heap out of the first k + 1 element
 		int[] heap = new int[k];
-		for (int i = 0; i <= k; ++i) {
+		for (int i = 0; i < k; ++i) {
 			heap[i] = nums[i];
 		}
 		
@@ -232,7 +232,7 @@ public class Sortings {
 		
 		//int[] ret = new int[nums.length];
 		int size = heap.length;
-		for (int i = k + 1, j = 0; j < nums.length; ++i) {
+		for (int i = k , j = 0; j < nums.length; ++i) {
 			if (i < nums.length) {
 				int t = nums[j];
 				nums[j] = heap[0];

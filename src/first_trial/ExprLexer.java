@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 src/first_trial/Expr.g 2017-09-15 13:23:18
+// $ANTLR 3.5.2 src/first_trial/Expr.g 2017-11-08 15:16:35
 package first_trial;
 
 import org.antlr.runtime.*;
@@ -43,8 +43,8 @@ public class ExprLexer extends Lexer {
 		try {
 			int _type = LPAREN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// src/first_trial/Expr.g:60:8: ( '(' )
-			// src/first_trial/Expr.g:60:10: '('
+			// src/first_trial/Expr.g:61:8: ( '(' )
+			// src/first_trial/Expr.g:61:10: '('
 			{
 			match('('); 
 			}
@@ -63,8 +63,8 @@ public class ExprLexer extends Lexer {
 		try {
 			int _type = RPAREN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// src/first_trial/Expr.g:61:8: ( ')' )
-			// src/first_trial/Expr.g:61:10: ')'
+			// src/first_trial/Expr.g:62:8: ( ')' )
+			// src/first_trial/Expr.g:62:10: ')'
 			{
 			match(')'); 
 			}
@@ -83,8 +83,8 @@ public class ExprLexer extends Lexer {
 		try {
 			int _type = PLUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// src/first_trial/Expr.g:62:6: ( '+' )
-			// src/first_trial/Expr.g:62:8: '+'
+			// src/first_trial/Expr.g:63:6: ( '+' )
+			// src/first_trial/Expr.g:63:8: '+'
 			{
 			match('+'); 
 			}
@@ -103,8 +103,8 @@ public class ExprLexer extends Lexer {
 		try {
 			int _type = MINUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// src/first_trial/Expr.g:63:7: ( '-' )
-			// src/first_trial/Expr.g:63:9: '-'
+			// src/first_trial/Expr.g:64:7: ( '-' )
+			// src/first_trial/Expr.g:64:9: '-'
 			{
 			match('-'); 
 			}
@@ -123,8 +123,8 @@ public class ExprLexer extends Lexer {
 		try {
 			int _type = MULT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// src/first_trial/Expr.g:64:6: ( '*' )
-			// src/first_trial/Expr.g:64:8: '*'
+			// src/first_trial/Expr.g:65:6: ( '*' )
+			// src/first_trial/Expr.g:65:8: '*'
 			{
 			match('*'); 
 			}
@@ -143,8 +143,8 @@ public class ExprLexer extends Lexer {
 		try {
 			int _type = DIV;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// src/first_trial/Expr.g:65:6: ( '/' )
-			// src/first_trial/Expr.g:65:8: '/'
+			// src/first_trial/Expr.g:66:6: ( '/' )
+			// src/first_trial/Expr.g:66:8: '/'
 			{
 			match('/'); 
 			}
@@ -163,8 +163,8 @@ public class ExprLexer extends Lexer {
 		try {
 			int _type = EQ;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// src/first_trial/Expr.g:66:5: ( '=' )
-			// src/first_trial/Expr.g:66:7: '='
+			// src/first_trial/Expr.g:67:5: ( '=' )
+			// src/first_trial/Expr.g:67:7: '='
 			{
 			match('='); 
 			}
@@ -183,7 +183,7 @@ public class ExprLexer extends Lexer {
 		try {
 			int _type = ALPHA;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// src/first_trial/Expr.g:69:17: ( 'A' .. 'Z' | 'a' .. 'z' | '_' )
+			// src/first_trial/Expr.g:70:17: ( 'A' .. 'Z' | 'a' .. 'z' | '_' )
 			// src/first_trial/Expr.g:
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -210,7 +210,7 @@ public class ExprLexer extends Lexer {
 		try {
 			int _type = DIGIT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// src/first_trial/Expr.g:70:17: ( '0' .. '9' )
+			// src/first_trial/Expr.g:71:17: ( '0' .. '9' )
 			// src/first_trial/Expr.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -237,10 +237,10 @@ public class ExprLexer extends Lexer {
 		try {
 			int _type = INT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// src/first_trial/Expr.g:72:5: ( ( '0' .. '9' )+ )
-			// src/first_trial/Expr.g:72:9: ( '0' .. '9' )+
+			// src/first_trial/Expr.g:73:5: ( ( '0' .. '9' )+ )
+			// src/first_trial/Expr.g:73:9: ( '0' .. '9' )+
 			{
-			// src/first_trial/Expr.g:72:9: ( '0' .. '9' )+
+			// src/first_trial/Expr.g:73:9: ( '0' .. '9' )+
 			int cnt1=0;
 			loop1:
 			while (true) {
@@ -289,12 +289,12 @@ public class ExprLexer extends Lexer {
 		try {
 			int _type = ID;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// src/first_trial/Expr.g:73:4: ( ALPHA ( ALPHA | DIGIT )* )
-			// src/first_trial/Expr.g:73:6: ALPHA ( ALPHA | DIGIT )*
+			// src/first_trial/Expr.g:74:4: ( ALPHA ( ALPHA | DIGIT )* )
+			// src/first_trial/Expr.g:74:6: ALPHA ( ALPHA | DIGIT )*
 			{
 			mALPHA(); 
 
-			// src/first_trial/Expr.g:73:12: ( ALPHA | DIGIT )*
+			// src/first_trial/Expr.g:74:12: ( ALPHA | DIGIT )*
 			loop2:
 			while (true) {
 				int alt2=2;
@@ -339,10 +339,10 @@ public class ExprLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// src/first_trial/Expr.g:76:5: ( ( ' ' | '\\t' )+ )
-			// src/first_trial/Expr.g:76:7: ( ' ' | '\\t' )+
+			// src/first_trial/Expr.g:77:5: ( ( ' ' | '\\t' )+ )
+			// src/first_trial/Expr.g:77:7: ( ' ' | '\\t' )+
 			{
-			// src/first_trial/Expr.g:76:7: ( ' ' | '\\t' )+
+			// src/first_trial/Expr.g:77:7: ( ' ' | '\\t' )+
 			int cnt3=0;
 			loop3:
 			while (true) {
@@ -392,10 +392,10 @@ public class ExprLexer extends Lexer {
 		try {
 			int _type = NEWLINE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// src/first_trial/Expr.g:77:9: ( ( '\\r' )? '\\n' )
-			// src/first_trial/Expr.g:77:10: ( '\\r' )? '\\n'
+			// src/first_trial/Expr.g:78:9: ( ( '\\r' )? '\\n' )
+			// src/first_trial/Expr.g:78:10: ( '\\r' )? '\\n'
 			{
-			// src/first_trial/Expr.g:77:10: ( '\\r' )?
+			// src/first_trial/Expr.g:78:10: ( '\\r' )?
 			int alt4=2;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0=='\r') ) {
@@ -403,7 +403,7 @@ public class ExprLexer extends Lexer {
 			}
 			switch (alt4) {
 				case 1 :
-					// src/first_trial/Expr.g:77:10: '\\r'
+					// src/first_trial/Expr.g:78:10: '\\r'
 					{
 					match('\r'); 
 					}

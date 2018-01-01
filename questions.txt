@@ -10,11 +10,9 @@
 - given a string of parenthesis chars, remove the invalid paren.  (ab(a) => ab(a)
 - store bin tree into a list and restore  it
 - leetcode hard questions
-- regular expr validator using DP and recursive 
-- given two words and a dict, print the path form one word to the next, changing 1 letter at a time
+- regular expr validator using DP and recursive
 
-2
-▼
+- given two words and a dict, print the path form one word to the next, changing 1 letter at a time
 So for this problem:
 - Make a graph with the words. Words will be the nodes, and there will be an edge between two nodes if there's one letter of difference. I suggest creating a matrix for this graph.
 - Do a Bredth-First search of this graph starting by the initial word.
@@ -131,7 +129,9 @@ i.e a = [1,2,3]
 3) Reverse the order of the words in a string. i.e. Hello World -> World Hello
 4) How would you design a system that automatically uploads pictures from an app?  
 
-- Given a binary tree, write a function that prints all of the paths from the root node to the leaf nodes. What is the functions run time and space requirement.  
+- Given a binary tree, write a function that prints all of the paths from the root node to the leaf nodes. What is the functions run time and space requirement.
+   |
+  
 4 Answers
 Given a linked list, where each node's value can itself be a linked list (a recursive linked list), write a function that flattens it.  
 
@@ -187,8 +187,8 @@ next line : 12112211121214 and so on..
 how many possible strings of words can be formed using 1 as a, 2 as b, 3 as c and so on.
 for 111 - posible string aaa,ak,ka  
 
+================
+- find median of a stream
+  
 
-
-
-http://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-tree-set-2-using-parent-pointer/
-http://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-search-tree/
+https://www.careercup.com/page?pid=facebook-interview-questions

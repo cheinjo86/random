@@ -593,7 +593,7 @@ i = 4 | 10000
 				}
 			}
 		}
-		
+
 	}
 	
 	static String isInDict(Set<String> dict, char[] text, int i, int j){
@@ -607,7 +607,7 @@ i = 4 | 10000
 	
 	public static void longestCommonSeq(int[] a, int[] b) {
 		int[][] cLen = new int[a.length +1 ][b.length + 1];
-		List<Integer>[][] seq = new List[a.length +1][b.length + 1];
+
 		class Pair { 
 			int x; int y;
 			Pair p;
@@ -621,7 +621,7 @@ i = 4 | 10000
 			public String toString() { return "val = " + val;}
 		};
 		Pair[][] pred = new Pair[a.length+1][b.length+1];
-		int[][]value = new int[a.length+1][b.length + 1];
+		
 //		System.out.println("a length: "+ a.length);
 //		System.out.println("b length: "+ b.length);
 		for (int i = 1; i <= a.length; ++i) {

@@ -24,7 +24,8 @@ evaluate returns [double value]
 expr returns [double value]
     :
     e=mult_expr {$value = $e.value;}
-    (   PLUS e=mult_expr {$value += $e.value;}
+    ( options { backtrack=true; } :   
+    	PLUS e=mult_expr {$value += $e.value;}
     |   MINUS e=mult_expr {$value -= $e.value;}
     )*
     ;
@@ -32,7 +33,7 @@ expr returns [double value]
 mult_expr returns [double value]
 	:
 	left = unary_expr { $value = $left.value; }
-	(
+	(  options { backtrack=true; } :
 		MULT right = unary_expr { $value *= $right.value; }
 	|	DIV right = unary_expr { $value /= $right.value; }
 	)*
@@ -40,9 +41,9 @@ mult_expr returns [double value]
 	
 unary_expr returns [double value]
 	:
-	(
+	(  options { backtrack=true; } :
 		atom { $value = $atom.value; }
-	/*|	'-' e=unary_expr { $value = -1 * $e.value; } */
+	|	'-' e=unary_expr { $value = -1 * $e.value; } 
 	)
 	;	
 

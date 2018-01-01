@@ -14,7 +14,15 @@ import java.util.Random;
 import java.util.Set;
 
 public class NumbersArrayTest {
-	
+	static int[] array(int...n) {return n;}
+	@Test
+	public void testCombination() {
+		combination(array(1,2,3,4,5), 3);
+	}
+	@Test
+	public void testPermutation() {
+		permutation("ABA");
+	}
 	@Test
 	public void testFindNext() {
 		System.out.println(findSmallestLargerThan(new int[] {4,3,2,2,1}));

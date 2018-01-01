@@ -104,7 +104,7 @@ Ouput: f
 		// 
 		Set<WordNode> unsellted = new HashSet<>();
 		unsellted.addAll(graph.values());
-
+		//
 		Set<WordNode> cyclic = new HashSet<>();
 		while (!unsellted.isEmpty()) {
 			Iterator<WordNode> iter = unsellted.iterator();
